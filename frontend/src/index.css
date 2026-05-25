@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary-50: #ffebee;
+  --color-primary-100: #ffcdd2;
+  --color-primary-200: #ef9a9a;
+  --color-primary-300: #e57373;
+  --color-primary-400: #ef5350;
+  --color-primary-500: #e53935;
+  --color-primary-600: #d32f2f;
+  --color-primary-700: #c62828;
+  --color-primary-800: #b71c1c;
+  --color-primary-900: #7f0000;
+
+  --color-dark-bg: #0a0a0f;
+  --color-dark-card: rgba(20, 20, 30, 0.75);
+  --color-dark-border: rgba(255, 255, 255, 0.08);
+  --color-dark-text: #f3f4f6;
+  --color-dark-textMuted: #9ca3af;
+
+  --color-light-bg: #f3f4f6;
+  --color-light-card: rgba(255, 255, 255, 0.9);
+  --color-light-border: rgba(0, 0, 0, 0.06);
+  --color-light-text: #1f2937;
+  --color-light-textMuted: #6b7280;
+
+  --backdrop-blur-premium: 16px;
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@layer base {
+  html {
+    @apply bg-light-bg dark:bg-dark-bg;
+  }
+  body {
+    @apply bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text transition-colors duration-300 ease-in-out font-sans antialiased;
+  }
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(229, 57, 53, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(229, 57, 53, 0.4);
+}
+
+/* Glassmorphism Styles */
+.glass-card {
+  @apply backdrop-blur-premium border transition-all duration-300 shadow-sm;
+  background: var(--color-light-card);
+  border-color: var(--color-light-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.dark .glass-card {
+  background: var(--color-dark-card);
+  border-color: var(--color-dark-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.glass-card:hover {
+  box-shadow: 0 8px 30px rgba(229, 57, 53, 0.08);
+}
+
+.dark .glass-card:hover {
+  box-shadow: 0 8px 32px rgba(229, 57, 53, 0.12);
+}
+
+.glass-input {
+  @apply backdrop-blur-md border rounded-xl py-3 px-4 outline-none transition-all duration-200 w-full;
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--color-light-text);
+}
+
+.dark .glass-input {
+  background: rgba(15, 15, 25, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-dark-text);
+}
+
+.glass-input:focus {
+  @apply border-primary-500 ring-2 ring-primary-500/20;
+}
+
+.glass-input option {
+  background-color: #ffffff;
+  color: #1f2937;
+}
+
+.dark .glass-input option {
+  background-color: #14141e;
+  color: #f3f4f6;
+}
+
+/* Glow Effects */
+.glow-red {
+  box-shadow: 0 0 15px rgba(229, 57, 53, 0.25);
+}
+
+.glow-red-lg {
+  box-shadow: 0 0 30px rgba(229, 57, 53, 0.4);
+}
+
+/* Auth Backdrop Mesh */
+.mesh-gradient {
+  background-color: #0a0a0f;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(229, 57, 53, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(229, 57, 53, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(20, 20, 35, 0.9) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(20, 20, 35, 0.9) 0px, transparent 50%);
+}
+
+.mesh-gradient-light {
+  background-color: #f8f9fa;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(229, 57, 53, 0.08) 0px, transparent 40%),
+    radial-gradient(at 100% 100%, rgba(229, 57, 53, 0.04) 0px, transparent 40%);
+}
+
+/* Particle / Mesh Animations */
+@keyframes meshFloat {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 3D Perspective Container */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}

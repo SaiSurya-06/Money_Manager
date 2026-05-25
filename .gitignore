@@ -1,0 +1,34 @@
+# Node / React Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+.eslintcache
+
+# Python Backend
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# SQLite Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.suo
+*.sln
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
