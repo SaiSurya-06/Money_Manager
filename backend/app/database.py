@@ -16,8 +16,14 @@ if not DATABASE_URL:
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
+if DATABASE_URL.startswith("libsql://"):
+    DATABASE_URL = DATABASE_URL.replace("libsql://", "sqlite+libsql://", 1)
+
+# Apply check_same_thread ONLY for local sqlite databases (not remote libsql)
+is_local_sqlite = DATABASE_URL.startswith("sqlite:") and not DATABASE_URL.startswith("sqlite+libsql")
+
 engine = create_engine(
-    DATABASE_URL, connect_args={"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+    DATABASE_URL, connect_args={"check_same_thread": False} if is_local_sqlite else {}
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
